@@ -339,35 +339,39 @@ export default function App() {
         if (nearestKey !== undefined) {
           const isExact = nearestKey === totalBaris;
           const data = dataJuz[nearestKey];
+          const barisKe = (totalBaris - 1) % 15 + 1;
           pencapaian = {
             surah: data.surah,
-            ayat: isExact ? data.ayat : (data.ayat === "Basmalah" ? "Awal Surat" : `Lanjutan ${data.ayat}`)
+            ayat: isExact ? data.ayat : (data.ayat === "Basmalah" ? `Awal Surat (Baris ${barisKe})` : `Lanjutan ${data.ayat} (Baris ${barisKe})`)
           };
         } else {
           const namaSuratSpesifik = deteksiSurat(juzNum, totalBaris);
+          const barisKe = (totalBaris - 1) % 15 + 1;
           pencapaian = { 
             surah: namaSuratSpesifik, 
-            ayat: `Halaman ${hlm + 1}, Baris ${brs}` 
+            ayat: `Halaman ${Math.floor((totalBaris - 1) / 15) + 1}, Baris ${barisKe}` 
           };
         }
       } else {
         const namaSuratSpesifik = deteksiSurat(juzNum, totalBaris);
+        const barisKe = (totalBaris - 1) % 15 + 1;
         pencapaian = { 
           surah: namaSuratSpesifik, 
-          ayat: `Halaman ${hlm + 1}, Baris ${brs}` 
+          ayat: `Halaman ${Math.floor((totalBaris - 1) / 15) + 1}, Baris ${barisKe}` 
         };
       }
 
       return { juz: j, ...pencapaian };
     });
 
+    const totalLinesAll = ((hlm * 15) + brs) * juzList.length;
     setResult({ 
       details, 
       hlm, 
       brs, 
       totalBaris,
-      totalHalaman: hlm * juzList.length,
-      totalBarisResult: brs * juzList.length,
+      totalHalaman: Math.floor(totalLinesAll / 15),
+      totalBarisResult: totalLinesAll % 15,
       totalSurat: totalSuratAchieved
     });
   };
