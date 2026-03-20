@@ -1,0 +1,5 @@
+{
+  "name": "Quran Memorization Monitor",
+  "description": "A tool to monitor student Quran memorization progress based on pages and lines (Madinah Standard).",
+  "requestFramePermissions": []
+}

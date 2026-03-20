@@ -1,0 +1,50 @@
+/**
+ * Database Batas Surat per Juz (Standar Madinah 15 Baris)
+ * Angka mulaiBaris dihitung dari awal Juz tersebut (1 Halaman = 15 Baris)
+ */
+export const BATAS_SURAT_JUZ: Record<number, { mulaiBaris: number; nama: string }[]> = {
+  1: [{ mulaiBaris: 1, nama: "Al-Fatihah" }, { mulaiBaris: 16, nama: "Al-Baqarah" }],
+  2: [{ mulaiBaris: 1, nama: "Al-Baqarah" }],
+  3: [{ mulaiBaris: 1, nama: "Al-Baqarah" }, { mulaiBaris: 121, nama: "Ali 'Imran" }],
+  4: [{ mulaiBaris: 1, nama: "Ali 'Imran" }, { mulaiBaris: 181, nama: "An-Nisa'" }],
+  5: [{ mulaiBaris: 1, nama: "An-Nisa'" }],
+  6: [{ mulaiBaris: 1, nama: "An-Nisa'" }, { mulaiBaris: 166, nama: "Al-Ma'idah" }],
+  7: [{ mulaiBaris: 1, nama: "Al-Ma'idah" }, { mulaiBaris: 151, nama: "Al-An'am" }],
+  8: [{ mulaiBaris: 1, nama: "Al-An'am" }, { mulaiBaris: 166, nama: "Al-A'raf" }],
+  9: [{ mulaiBaris: 1, nama: "Al-A'raf" }],
+  10: [{ mulaiBaris: 1, nama: "Al-A'raf" }, { mulaiBaris: 196, nama: "Al-Anfal" }],
+  11: [{ mulaiBaris: 1, nama: "Al-Anfal" }, { mulaiBaris: 16, nama: "At-Taubah" }, { mulaiBaris: 271, nama: "Yunus" }],
+  12: [{ mulaiBaris: 1, nama: "Yunus" }, { mulaiBaris: 136, nama: "Hud" }],
+  13: [{ mulaiBaris: 1, nama: "Hud" }, { mulaiBaris: 76, nama: "Yusuf" }, { mulaiBaris: 286, nama: "Ar-Ra'd" }],
+  14: [{ mulaiBaris: 1, nama: "Ar-Ra'd" }, { mulaiBaris: 16, nama: "Ibrahim" }, { mulaiBaris: 196, nama: "Al-Hijr" }, { mulaiBaris: 271, nama: "An-Nahl" }],
+  15: [{ mulaiBaris: 1, nama: "An-Nahl" }, { mulaiBaris: 16, nama: "Al-Isra'" }, { mulaiBaris: 286, nama: "Al-Kahf" }],
+  16: [{ mulaiBaris: 1, nama: "Al-Kahf" }, { mulaiBaris: 106, nama: "Maryam" }, { mulaiBaris: 211, nama: "Thaha" }],
+  17: [{ mulaiBaris: 1, nama: "Thaha" }, { mulaiBaris: 16, nama: "Al-Anbiya'" }, { mulaiBaris: 196, nama: "Al-Hajj" }],
+  18: [{ mulaiBaris: 1, nama: "Al-Hajj" }, { mulaiBaris: 16, nama: "Al-Mu'minun" }, { mulaiBaris: 151, nama: "An-Nur" }, { mulaiBaris: 286, nama: "Al-Furqan" }],
+  19: [{ mulaiBaris: 1, nama: "Al-Furqan" }, { mulaiBaris: 31, nama: "Asy-Syu'ara'" }, { mulaiBaris: 211, nama: "An-Naml" }],
+  20: [{ mulaiBaris: 1, nama: "An-Naml" }, { mulaiBaris: 76, nama: "Al-Qashash" }, { mulaiBaris: 286, nama: "Al-'Ankabut" }],
+  21: [{ mulaiBaris: 1, nama: "Al-'Ankabut" }, { mulaiBaris: 121, nama: "Ar-Rum" }, { mulaiBaris: 211, nama: "Luqman" }, { mulaiBaris: 271, nama: "As-Sajdah" }, { mulaiBaris: 286, nama: "Al-Ahzab" }],
+  22: [{ mulaiBaris: 1, nama: "Al-Ahzab" }, { mulaiBaris: 151, nama: "Saba'" }, { mulaiBaris: 241, nama: "Fathir" }, { mulaiBaris: 286, nama: "Yasin" }],
+  23: [{ mulaiBaris: 1, nama: "Yasin" }, { mulaiBaris: 61, nama: "Ash-Shaffat" }, { mulaiBaris: 196, nama: "Shad" }, { mulaiBaris: 286, nama: "Az-Zumar" }],
+  24: [{ mulaiBaris: 1, nama: "Az-Zumar" }, { mulaiBaris: 106, nama: "Ghafir" }, { mulaiBaris: 286, nama: "Fushshilat" }],
+  25: [{ mulaiBaris: 1, nama: "Fushshilat" }, { mulaiBaris: 61, nama: "Asy-Syura" }, { mulaiBaris: 166, nama: "Az-Zukhruf" }, { mulaiBaris: 256, nama: "Ad-Dukhan" }, { mulaiBaris: 286, nama: "Al-Jatsiyah" }],
+  26: [{ mulaiBaris: 1, nama: "Al-Jatsiyah" }, { mulaiBaris: 16, nama: "Al-Ahqaf" }, { mulaiBaris: 106, nama: "Muhammad" }, { mulaiBaris: 181, nama: "Al-Fath" }, { mulaiBaris: 256, nama: "Al-Hujurat" }, { mulaiBaris: 286, nama: "Qaf" }],
+  27: [{ mulaiBaris: 1, nama: "Qaf" }, { mulaiBaris: 31, nama: "Adz-Dzariyat" }, { mulaiBaris: 91, nama: "Ath-Thur" }, { mulaiBaris: 136, nama: "An-Najm" }, { mulaiBaris: 181, nama: "Al-Qamar" }, { mulaiBaris: 226, nama: "Ar-Rahman" }, { mulaiBaris: 271, nama: "Al-Waqi'ah" }, { mulaiBaris: 316, nama: "Al-Hadid" }],
+  28: [{ mulaiBaris: 1, nama: "Al-Mujadilah" }, { mulaiBaris: 61, nama: "Al-Hasyr" }, { mulaiBaris: 121, nama: "Al-Mumtahanah" }, { mulaiBaris: 181, nama: "Ash-Shaff" }, { mulaiBaris: 211, nama: "Al-Jumu'ah" }, { mulaiBaris: 241, nama: "Al-Munafiqun" }, { mulaiBaris: 271, nama: "At-Taghabun" }, { mulaiBaris: 316, nama: "Ath-Thalaq" }, { mulaiBaris: 346, nama: "At-Tahrim" }],
+  29: [{ mulaiBaris: 1, nama: "Al-Mulk" }, { mulaiBaris: 31, nama: "Al-Qalam" }, { mulaiBaris: 61, nama: "Al-Haqqah" }, { mulaiBaris: 91, nama: "Al-Ma'arij" }, { mulaiBaris: 121, nama: "Nuh" }, { mulaiBaris: 151, nama: "Al-Jinn" }, { mulaiBaris: 181, nama: "Al-Muzzammil" }, { mulaiBaris: 211, nama: "Al-Muddatstsir" }, { mulaiBaris: 241, nama: "Al-Qiyamah" }, { mulaiBaris: 271, nama: "Al-Insan" }, { mulaiBaris: 301, nama: "Al-Mursalat" }],
+  30: [
+    { mulaiBaris: 1, nama: "An-Naba" }, { mulaiBaris: 21, nama: "An-Nazi'at" }, { mulaiBaris: 46, nama: "'Abasa" },
+    { mulaiBaris: 68, nama: "At-Takwir" }, { mulaiBaris: 85, nama: "Al-Infitar" }, { mulaiBaris: 97, nama: "Al-Muthaffifin" },
+    { mulaiBaris: 118, nama: "Al-Insyiqaq" }, { mulaiBaris: 133, nama: "Al-Buruj" }, { mulaiBaris: 148, nama: "Ath-Thariq" },
+    { mulaiBaris: 158, nama: "Al-A'la" }, { mulaiBaris: 168, nama: "Al-Ghasyiyah" }, { mulaiBaris: 181, nama: "Al-Fajr" },
+    { mulaiBaris: 201, nama: "Al-Balad" }, { mulaiBaris: 213, nama: "Asy-Syams" }, { mulaiBaris: 223, nama: "Al-Lail" },
+    { mulaiBaris: 234, nama: "Ad-Duha" }, { mulaiBaris: 239, nama: "Al-Insyirah" }, { mulaiBaris: 244, nama: "At-Tin" },
+    { mulaiBaris: 249, nama: "Al-'Alaq" }, { mulaiBaris: 259, nama: "Al-Qadr" }, { mulaiBaris: 264, nama: "Al-Bayyinah" },
+    { mulaiBaris: 274, nama: "Az-Zalzalah" }, { mulaiBaris: 279, nama: "Al-'Adiyat" }, { mulaiBaris: 286, nama: "Al-Qari'ah" },
+    { mulaiBaris: 291, nama: "At-Takatsur" }, { mulaiBaris: 296, nama: "Al-'Asr" }, { mulaiBaris: 299, nama: "Al-Humazah" },
+    { mulaiBaris: 304, nama: "Al-Fil" }, { mulaiBaris: 309, nama: "Quraisy" }, { mulaiBaris: 313, nama: "Al-Ma'un" },
+    { mulaiBaris: 318, nama: "Al-Kautsar" }, { mulaiBaris: 321, nama: "Al-Kafirun" }, { mulaiBaris: 326, nama: "An-Nashr" },
+    { mulaiBaris: 329, nama: "Al-Lahab" }, { mulaiBaris: 332, nama: "Al-Ikhlas" }, { mulaiBaris: 335, nama: "Al-Falaq" },
+    { mulaiBaris: 338, nama: "An-Nas" }
+  ]
+};
