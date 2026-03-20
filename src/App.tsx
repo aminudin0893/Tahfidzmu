@@ -346,9 +346,16 @@ export default function App() {
     const brs = Number(baris) || 0;
     const totalBaris = (hlm * 15) + brs;
 
+    let totalSuratAchieved = 0;
     const details = juzList.map(j => {
       let pencapaian: { surah: string; ayat: string };
       
+      const juzNum = parseInt(j);
+      const batas = BATAS_SURAT_JUZ[juzNum];
+      if (batas) {
+        totalSuratAchieved += batas.filter(b => totalBaris >= b.mulaiBaris).length;
+      }
+
       const dataJuz = posisiAyatData[j];
       if (dataJuz) {
         const keys = Object.keys(dataJuz).map(Number).sort((a, b) => b - a);
@@ -360,14 +367,14 @@ export default function App() {
             ayat: dataJuz[nearestKey].ayat + (nearestKey === totalBaris ? "" : " (Awal Halaman)")
           };
         } else {
-          const namaSuratSpesifik = deteksiSurat(parseInt(j), totalBaris);
+          const namaSuratSpesifik = deteksiSurat(juzNum, totalBaris);
           pencapaian = { 
             surah: namaSuratSpesifik, 
             ayat: `Halaman ${hlm + 1}, Baris ${brs}` 
           };
         }
       } else {
-        const namaSuratSpesifik = deteksiSurat(parseInt(j), totalBaris);
+        const namaSuratSpesifik = deteksiSurat(juzNum, totalBaris);
         pencapaian = { 
           surah: namaSuratSpesifik, 
           ayat: `Halaman ${hlm + 1}, Baris ${brs}` 
@@ -377,7 +384,15 @@ export default function App() {
       return { juz: j, ...pencapaian };
     });
 
-    setResult({ details, hlm, brs, totalBaris });
+    setResult({ 
+      details, 
+      hlm, 
+      brs, 
+      totalBaris,
+      totalHalaman: hlm * juzList.length,
+      totalBarisResult: brs * juzList.length,
+      totalSurat: totalSuratAchieved
+    });
   };
 
   return (
@@ -522,6 +537,32 @@ export default function App() {
                     <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
                     Hasil Analisis
                   </h3>
+
+                  {/* Summary for multiple Juz */}
+                  {result.details.length > 1 && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="grid grid-cols-2 gap-4 mb-8"
+                    >
+                      <div className="bg-white/10 backdrop-blur-sm p-5 rounded-3xl border border-white/10 shadow-inner">
+                        <p className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest mb-2">Total Hafalan</p>
+                        <p className="text-2xl font-black text-white leading-none">
+                          {result.totalHalaman} <span className="text-[10px] font-medium text-stone-400 uppercase">HLM</span>
+                        </p>
+                        <p className="text-xs font-bold text-stone-500 mt-1">
+                          {result.totalBarisResult} <span className="text-[10px] uppercase">Baris</span>
+                        </p>
+                      </div>
+                      <div className="bg-white/10 backdrop-blur-sm p-5 rounded-3xl border border-white/10 shadow-inner">
+                        <p className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest mb-2">Capaian Surat</p>
+                        <p className="text-2xl font-black text-white leading-none">
+                          {result.totalSurat} <span className="text-[10px] font-medium text-stone-400 uppercase">Surat</span>
+                        </p>
+                        <p className="text-xs font-bold text-stone-500 mt-1">Dari {result.details.length} Juz</p>
+                      </div>
+                    </motion.div>
+                  )}
 
                   <div className="space-y-4">
                     {result.details.map((item: any, idx: number) => (
