@@ -331,10 +331,13 @@ export default function App() {
   };
 
   const handleJuzToggle = (selectedJuz: string) => {
+    const limit = parseInt(kategori);
     if (juzList.includes(selectedJuz)) {
       setJuzList(juzList.filter(j => j !== selectedJuz));
     } else {
-      setJuzList([...juzList, selectedJuz]);
+      if (juzList.length < limit) {
+        setJuzList([...juzList, selectedJuz]);
+      }
     }
   };
 
@@ -425,7 +428,14 @@ export default function App() {
                 <select 
                   className="w-full px-5 py-4 rounded-2xl border border-stone-200 focus:ring-2 focus:ring-emerald-500 bg-stone-50 outline-none transition-all appearance-none cursor-pointer font-medium"
                   value={kategori}
-                  onChange={(e) => setKategori(e.target.value)}
+                  onChange={(e) => {
+                    const newKategori = e.target.value;
+                    const limit = parseInt(newKategori);
+                    setKategori(newKategori);
+                    if (juzList.length > limit) {
+                      setJuzList(juzList.slice(0, limit));
+                    }
+                  }}
                 >
                   {kategoriOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
                 </select>
@@ -441,20 +451,25 @@ export default function App() {
                   {juzOptions.map(opt => {
                     const isSelected = juzList.includes(opt);
                     const urutanPilihan = juzList.indexOf(opt) + 1;
+                    const limit = parseInt(kategori);
+                    const isFull = juzList.length >= limit && !isSelected;
                     
                     return (
                       <label 
                         key={opt} 
-                        className={`relative flex items-center justify-center py-3 rounded-xl border cursor-pointer transition-all duration-300 select-none
+                        className={`relative flex items-center justify-center py-3 rounded-xl border transition-all duration-300 select-none
                           ${isSelected 
-                            ? 'bg-emerald-600 text-white border-emerald-600 shadow-lg shadow-emerald-200 scale-105 z-10' 
-                            : 'bg-stone-50 text-stone-500 border-stone-200 hover:border-emerald-300 hover:bg-emerald-50'
+                            ? 'bg-emerald-600 text-white border-emerald-600 shadow-lg shadow-emerald-200 scale-105 z-10 cursor-pointer' 
+                            : isFull
+                              ? 'bg-stone-100 text-stone-300 border-stone-200 cursor-not-allowed opacity-50'
+                              : 'bg-stone-50 text-stone-500 border-stone-200 hover:border-emerald-300 hover:bg-emerald-50 cursor-pointer'
                           }`}
                       >
                         <input 
                           type="checkbox" 
                           className="hidden" 
                           checked={isSelected}
+                          disabled={isFull}
                           onChange={() => handleJuzToggle(opt)}
                         />
                         <span className="text-sm font-bold">{opt}</span>
@@ -489,7 +504,9 @@ export default function App() {
                     <input 
                       type="number" min="0" max="25"
                       className="w-full px-5 py-4 rounded-2xl border border-stone-200 focus:ring-2 focus:ring-emerald-500 outline-none pr-14 bg-white transition-all group-hover:border-emerald-200"
-                      value={halaman} onChange={(e) => setHalaman(Number(e.target.value))} required
+                      value={halaman === 0 ? '' : halaman} 
+                      onChange={(e) => setHalaman(e.target.value === '' ? 0 : parseInt(e.target.value, 10) || 0)} 
+                      required
                     />
                     <span className="absolute right-5 top-1/2 -translate-y-1/2 text-stone-400 text-xs font-bold">HLM</span>
                   </div>
@@ -500,7 +517,9 @@ export default function App() {
                     <input 
                       type="number" min="0" max="15"
                       className="w-full px-5 py-4 rounded-2xl border border-stone-200 focus:ring-2 focus:ring-emerald-500 outline-none pr-16 bg-white transition-all group-hover:border-emerald-200"
-                      value={baris} onChange={(e) => setBaris(Number(e.target.value))} required
+                      value={baris === 0 ? '' : baris} 
+                      onChange={(e) => setBaris(e.target.value === '' ? 0 : parseInt(e.target.value, 10) || 0)} 
+                      required
                     />
                     <span className="absolute right-5 top-1/2 -translate-y-1/2 text-stone-400 text-xs font-bold">BARIS</span>
                   </div>
