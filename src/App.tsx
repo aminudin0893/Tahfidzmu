@@ -275,14 +275,21 @@ export default function App() {
       316: { surah: "Al-Insan", ayat: "15" }, 331: { surah: "Al-Mursalat", ayat: "Basmalah" },
     },
     "30": {
-      1: { surah: "An-Naba'", ayat: "1" }, 16: { surah: "An-Naba'", ayat: "31" }, 31: { surah: "An-Nazi'at", ayat: "16" },
-      46: { surah: "'Abasa", ayat: "Basmalah" }, 61: { surah: "At-Takwir", ayat: "Basmalah" }, 76: { surah: "At-Takwir", ayat: "15" },
-      91: { surah: "Al-Infitar", ayat: "Basmalah" }, 106: { surah: "Al-Muthaffifin", ayat: "7" }, 121: { surah: "Al-Insyiqaq", ayat: "Basmalah" },
-      136: { surah: "Al-Buruj", ayat: "Basmalah" }, 151: { surah: "Ath-Thariq", ayat: "Basmalah" }, 166: { surah: "Al-A'la", ayat: "16" },
-      181: { surah: "Al-Fajr", ayat: "Basmalah" }, 196: { surah: "Al-Balad", ayat: "Basmalah" }, 211: { surah: "Asy-Syams", ayat: "Basmalah" },
-      226: { surah: "Al-Lail", ayat: "Basmalah" }, 241: { surah: "Ad-Duha", ayat: "Basmalah" }, 256: { surah: "Al-Insyirah", ayat: "Basmalah" },
-      271: { surah: "Al-'Alaq", ayat: "9" }, 286: { surah: "Az-Zalzalah", ayat: "Basmalah" }, 301: { surah: "At-Takatsur", ayat: "Basmalah" },
-      316: { surah: "Quraisy", ayat: "Basmalah" }, 331: { surah: "Al-Kafirun", ayat: "Basmalah" },
+      1: { surah: "An-Naba'", ayat: "1" }, 16: { surah: "An-Naba'", ayat: "31" }, 31: { surah: "An-Nazi'at", ayat: "1" },
+      46: { surah: "An-Nazi'at", ayat: "16" }, 61: { surah: "'Abasa", ayat: "1" }, 76: { surah: "'Abasa", ayat: "17" },
+      91: { surah: "At-Takwir", ayat: "1" }, 106: { surah: "At-Takwir", ayat: "15" }, 121: { surah: "Al-Infitar", ayat: "1" },
+      136: { surah: "Al-Muthaffifin", ayat: "1" }, 151: { surah: "Al-Muthaffifin", ayat: "18" }, 166: { surah: "Al-Insyiqaq", ayat: "1" },
+      181: { surah: "Al-Buruj", ayat: "1" }, 196: { surah: "Ath-Thariq", ayat: "1" }, 211: { surah: "Al-A'la", ayat: "1" },
+      226: { surah: "Al-Ghasyiyah", ayat: "1" }, 241: { surah: "Al-Fajr", ayat: "1" }, 256: { surah: "Al-Fajr", ayat: "15" },
+      271: { surah: "Al-Balad", ayat: "1" }, 286: { surah: "Asy-Syams", ayat: "1" }, 301: { surah: "Al-Lail", ayat: "1" },
+      316: { surah: "Ad-Duha", ayat: "1" }, 331: { surah: "Al-Insyirah", ayat: "1" }, 346: { surah: "At-Tin", ayat: "1" },
+      361: { surah: "Al-'Alaq", ayat: "1" }, 376: { surah: "Al-Qadr", ayat: "1" }, 391: { surah: "Al-Bayyinah", ayat: "1" },
+      406: { surah: "Az-Zalzalah", ayat: "1" }, 421: { surah: "Al-'Adiyat", ayat: "1" }, 436: { surah: "Al-Qari'ah", ayat: "1" },
+      451: { surah: "At-Takatsur", ayat: "1" }, 466: { surah: "Al-'Asr", ayat: "1" }, 481: { surah: "Al-Humazah", ayat: "1" },
+      496: { surah: "Al-Fil", ayat: "1" }, 511: { surah: "Quraisy", ayat: "1" }, 526: { surah: "Al-Ma'un", ayat: "1" },
+      541: { surah: "Al-Kautsar", ayat: "1" }, 556: { surah: "Al-Kafirun", ayat: "1" }, 571: { surah: "An-Nashr", ayat: "1" },
+      586: { surah: "Al-Lahab", ayat: "1" }, 601: { surah: "Al-Ikhlas", ayat: "1" }, 616: { surah: "Al-Falaq", ayat: "1" },
+      631: { surah: "An-Nas", ayat: "1" },
     }
   };
 
@@ -340,9 +347,12 @@ export default function App() {
           const isExact = nearestKey === totalBaris;
           const data = dataJuz[nearestKey];
           const barisKe = (totalBaris - 1) % 15 + 1;
+          const displayAyat = isExact 
+            ? (data.ayat === "Basmalah" ? "Awal Surat (Basmalah)" : `Ayat ${data.ayat}`)
+            : (data.ayat === "Basmalah" ? `Awal Surat (Baris ${barisKe})` : `Ayat ${data.ayat} (Baris ${barisKe})`);
           pencapaian = {
             surah: data.surah,
-            ayat: isExact ? data.ayat : (data.ayat === "Basmalah" ? `Awal Surat (Baris ${barisKe})` : `Lanjutan ${data.ayat} (Baris ${barisKe})`)
+            ayat: displayAyat
           };
         } else {
           const namaSuratSpesifik = deteksiSurat(juzNum, totalBaris);
